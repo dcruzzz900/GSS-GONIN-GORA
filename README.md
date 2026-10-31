@@ -1,1 +1,0 @@
-# GSS-GONIN-GORA
