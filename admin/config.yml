@@ -2,6 +2,8 @@ backend:
   name: github
   repo: dcruzzz900/GSS-GONIN-GORA
   branch: main
+  base_url: https://gss-gonin-gora-cms-auth2.austinjames900.workers.dev
+  auth_endpoint: /auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
