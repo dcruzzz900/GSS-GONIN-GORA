@@ -17,7 +17,7 @@
   var base=(function(){
     var a=[];
     [[8*60,10*60,'Morning shift',12*60+30],[13*60,15*60,'Afternoon shift',17*60+30]].forEach(function(s){
-      var t,n=1;if(s[0]===13*60)a.push([12*60+30,'Shift changeover']);
+      var t,n=1;if(s[0]===13*60)a.push([12*60+30,'Afternoon shift resumes']);
       for(t=s[0];t<s[1];t+=30)a.push([t,s[2]+' \u00b7 Period '+(n++)]);
       a.push([s[1],s[2].split(' ')[0]+' break']);
       for(t=s[1]+30;t<s[3];t+=30)a.push([t,s[2]+' \u00b7 Period '+(n++)]);
@@ -28,10 +28,10 @@
   var day=[];
   function plan(wd){
     var sess={1:'General assembly',2:'Gender assembly',3:'Assembly',4:'House assembly'},w=sess[wd]?wd:1,mw=(w===1||w===3);
-    var pre=[[7*60+30,sess[w]]];if(mw)pre.push([7*60+50,'Staff briefing']);
-    var mid=[[12*60+30,mw?'Shift changeover':sess[w]]];if(mw){mid.push([12*60+40,sess[w]]);mid.push([12*60+50,'Staff briefing'])}
+    var pre=[[7*60,'Morning shift resumes'],[7*60+30,sess[w]]];if(mw)pre.push([7*60+50,'Staff briefing']);
+    var mid=[[12*60+30,mw?'Afternoon shift resumes':sess[w]]];if(mw){mid.push([12*60+40,sess[w]]);mid.push([12*60+50,'Staff briefing'])}
     var a=pre.slice();
-    base.forEach(function(e){if(e[0]===12*60+30&&e[1]==='Shift changeover'){a=a.concat(mid)}else a.push(e)});
+    base.forEach(function(e){if(e[0]===12*60+30&&e[1]==='Afternoon shift resumes'){a=a.concat(mid)}else a.push(e)});
     return a;
   }
   function pad(n){return n<10?'0'+n:n}
@@ -40,9 +40,9 @@
     var d=new Date(),m=d.getHours()*60+d.getMinutes(),wd=d.getDay();day=plan(wd);
     $('#clock').textContent=d.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'})+' · '+hm(m);
     var now=$('#now'),bar=$('#bar'),nx=$('#next'),lf=$('#left');
-    if(wd===0||wd>=5){now.textContent='The school is closed';bar.style.width='0';nx.textContent='School resumes Monday at 7:30';lf.textContent='';return}
+    if(wd===0||wd>=5){now.textContent='The school is closed';bar.style.width='0';nx.textContent='School resumes Monday at 7:00';lf.textContent='';return}
     if(m<day[0][0]){now.textContent='Doors open soon';bar.style.width='0';nx.textContent='Next: '+day[0][1]+' at '+hm(day[0][0]);lf.textContent=(day[0][0]-m)+' min';return}
-    if(m>=day[day.length-1][0]){now.textContent='School day complete';bar.style.width='100%';nx.textContent=(wd===4?'School resumes Monday at 7:30':'See you tomorrow at 7:30');lf.textContent='';return}
+    if(m>=day[day.length-1][0]){now.textContent='School day complete';bar.style.width='100%';nx.textContent=(wd===4?'School resumes Monday at 7:00':'See you tomorrow at 7:00');lf.textContent='';return}
     var i=0;while(i<day.length-1&&m>=day[i+1][0])i++;
     var s=day[i][0],e=day[i+1][0];
     now.textContent=day[i][1];bar.style.width=Math.round((m-s)/(e-s)*100)+'%';
@@ -140,7 +140,7 @@
     {c:'Staff',t:'Mr Yari Zachariah',x:'Vice Principal Academics.',e:'',img:GP.vp},
     {c:'Staff',t:'Mr Michael Tobias Dunka',x:'Senior Master (Academics).',e:'',img:GP.sma},
     {c:'Staff',t:'Mr James Augustine Enemona',x:'Discipline Master.',e:'',img:GP.dm},
-    {c:'Staff',t:'Principal',x:'Mr Elias Mathias, Principal.',e:'',img:GP.pr},
+    {c:'Staff',t:'Mr Elias Mathias',x:'Principal.',e:'',img:GP.pr},
     {c:'Staff',t:'Mrs Magdaline Boniface',x:'Senior Mistress (Administration).',e:'',img:GP.sm},
     {c:'Staff',t:'Mrs Florence Christopher',x:'Head of Sciences.',e:'',img:GP.hod},
     {c:'Staff',t:'Mrs Patience John Emmanuel',x:'Welfare Officer.',e:'',img:GP.wel},
@@ -157,7 +157,7 @@
   });
   function drawGal(){
     gl=shots.filter(function(s){return gcur==='All'||s.c===gcur});
-    $('#gal').innerHTML=gl.map(function(s,i){return '<button class="shot" data-i="'+i+'"><div class="art" style="'+gbg(i)+'">'+gart(s)+'</div><div class="cap"><b>'+s.t+'</b><span>'+s.c+'</span></div></button>'}).join('');
+    $('#gal').innerHTML=gl.map(function(s,i){var st=s.c==='Staff';return '<button class="shot" data-i="'+i+'"><div class="art" style="'+gbg(i)+'">'+gart(s)+(st?'<div class="ov"><b>'+s.t+'</b><span>'+s.x.replace(/\.$/,'')+'</span></div>':'')+'</div><div class="cap">'+(st?'<span>Staff</span>':'<b>'+s.t+'</b><span>'+s.c+'</span>')+'</div></button>'}).join('');
   }
   function lbShow(i){
     gi=(i+gl.length)%gl.length;var s=gl[gi];
@@ -185,7 +185,7 @@
   $('#calnote').textContent=SESSION+' academic session. We are currently in the '+TERMS[CUR-1].n.toLowerCase()+'. Choose a view below.';
   var DN={1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thursday'};
   function pre(wd,lo,hi){return plan(wd).filter(function(e){return e[0]>=lo&&e[0]<hi&&!/Period|break/.test(e[1])}).map(function(e){return hm(e[0])+' '+e[1]}).join('<br>')}
-  $('#weekbody').innerHTML=[1,2,3,4].map(function(w){return '<tr><th scope="row">'+DN[w]+'</th><td>'+pre(w,450,480)+'</td><td>'+pre(w,750,780)+'</td></tr>'}).join('');
+  $('#weekbody').innerHTML=[1,2,3,4].map(function(w){return '<tr><th scope="row">'+DN[w]+'</th><td>'+pre(w,420,480)+'</td><td>'+pre(w,750,780)+'</td></tr>'}).join('');
   var calf=$('#calf');
   [['Terms','terms'],['Weekly timetable','week']].forEach(function(v,i){
     var b=document.createElement('button');b.className='chip';b.textContent=v[0];b.setAttribute('aria-pressed',i===0);
@@ -215,7 +215,7 @@
   var PRINCIPAL_WIDE='images/principal-wide-hero.jpg';
   var SCHOOL_IMG='images/hero-school-building.jpg',CLASS_IMG='images/hero-classroom.jpg',SPORT_IMG='images/hero-sports.jpg',ASSEMBLY_IMG=((shots.filter(function(s){return s.t==='School assembly'})[0])||{}).img||'';
   var hsl=[
-    {c:'pslide',k:'Welcome to',t:'Government Secondary School Gonin-Gora',p:'Providing quality education, building character and shaping a brighter future.',b:'Learn More',h:'#about',bg:'background:var(--hero-a)',a:'<img class="hs-bg" alt="School building" style="object-position:50% 50%" src="'+SCHOOL_IMG+'">'},
+    {c:'pslide',k:'Welcome to',t:'Government Secondary School Gonin-Gora',p:'Providing quality education, building character and shaping a brighter future. Established in 2005.',b:'Learn More',h:'#about',bg:'background:var(--hero-a)',a:'<img class="hs-bg" alt="School building" style="object-position:50% 50%" src="'+SCHOOL_IMG+'">'},
     {c:'pslide',k:'Mission and vision',t:'Quality, affordable and inclusive education',p:'We develop responsible, confident and productive citizens, and aim to be a leading school known for academic excellence and moral values.',b:'Read more',h:'#about',bg:'background:linear-gradient(120deg,var(--hero-a),var(--hero-b))',a:'<img class="hs-bg" alt="" style="object-position:50% 30%" src="'+ASSEMBLY_IMG+'">'},
     {c:'pslide',k:'Our principal',t:'Together we build a better tomorrow.',p:'Mr Elias Mathias, Principal',b:'Meet our staff',h:'#staff',bg:'background:linear-gradient(60deg,var(--hero-a),var(--hero-b))',a:'<img class="hs-bg" alt="Principal" src="'+PRINCIPAL_WIDE+'">'},
     {c:'pslide',k:'Academic activities',t:'Science, Arts and Commercial pathways',p:'Students in SS1 to SS3 prepare for their examinations with dedicated teachers.',b:'See pathways',h:'#programs',bg:'background:linear-gradient(150deg,var(--hero-b),var(--hero-a))',a:'<img class="hs-bg" alt="" style="object-position:62% 50%" src="'+CLASS_IMG+'">'},
@@ -298,7 +298,7 @@
     {n:'Mrs Magdaline Boniface',r:'Senior Mistress (Administration)',d:'Leadership',b:'Add a short introduction here.',ph:'sm'},
     {n:'Mr James Augustine Enemona',r:'Discipline Master',d:'Leadership',b:'Handles student conduct and discipline. Add a short introduction here.',ph:'dm'},
     {n:'Mrs Patience John Emmanuel',r:'Welfare Officer',d:'Leadership',b:'Looks after student welfare. Add a short introduction here.',ph:'wel'},
-    {n:'Aaron Monday Dachet',r:'Labour Master',d:'Leadership',b:'Looks after the school environment and student labour. Add a short introduction here.'},
+    {n:'Mr Aaron Monday Dachet',r:'Labour Master',d:'Leadership',b:'Looks after the school environment and student labour. Add a short introduction here.'},
     {n:'Games Master',r:'Sports and games',d:'Leadership',b:'Add the name and a short introduction here.'},
     {n:'SS1 Master',r:'Year group master, SS1',d:'Leadership',b:'Add the name and a short introduction here.'},
     {n:'SS2 Master',r:'Year group master, SS2',d:'Leadership',b:'Add the name and a short introduction here.'},
@@ -306,7 +306,7 @@
     {n:'Mrs Florence Christopher',r:'Head of Sciences',d:'Departments',b:'Head of the Sciences department. Add a short introduction here.',ph:'hod'},
     {n:'Mr Samson Mallam',r:'Head of Humanities',d:'Departments',b:'Head of the Humanities department. Add a short introduction here.',ph:'hum'},
     {n:'Mr Audu Joel',r:'Head of Vocational and Technology',d:'Departments',b:'Head of the Vocational and Technology department. Add a short introduction here.'},
-    {n:'Head of Languages',r:'English and languages',d:'Departments',b:'Add the name and a short introduction here.'},
+    {n:'Mrs Sweetie Martins',r:'Head of Languages',d:'Departments',b:'Head of the Languages department. Add a short introduction here.'},
     {n:'Mrs Stella Dalun Kwasau',r:'Guidance and Counselling Officer',d:'Departments',b:'Looks after student welfare and counselling. Add a short introduction here.',ph:'gco'},
     {n:'Mr Naallah Samuel Jock',r:'Exams Officer',d:'Departments',b:'Handles internal and external examinations. Add a short introduction here.',ph:'exam'}
   ];
@@ -317,10 +317,20 @@
     b.onclick=function(){sd=c;sf.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===b)});drawStaff()};
     sf.appendChild(b);
   });
+  var TIERS={1:'Principal',2:'Vice Principals',3:'Senior staff and student affairs',4:'Year group masters',5:'Heads of department',6:'Officers'};
+  function tierOf(s){var k=s.n+' '+s.r;
+    if(/Vice Principal/.test(k))return 2;
+    if(/Principal/.test(k))return 1;
+    if(/Year group master/.test(k))return 4;
+    if(/Head of/.test(k))return 5;
+    if(/Exams Officer|Guidance and Counselling/.test(k))return 6;
+    return 3}
   function drawStaff(){
-    $('#stafflist').innerHTML=staff.filter(function(s){return sd==='All'||s.d===sd}).map(function(s,i){
+    var pt=0;
+    $('#stafflist').innerHTML=staff.filter(function(s){return sd==='All'||s.d===sd}).slice().sort(function(a,b){return tierOf(a)-tierOf(b)}).map(function(s,i){
+      var tr=tierOf(s),hd=tr!==pt?'<h3 class="tier">'+TIERS[tr]+'</h3>':'';pt=tr;
       var ini=s.n.split(' ').map(function(w){return w[0]}).join('');
-      return '<button class="person" aria-expanded="false">'+(s.ph?'<img class="av" alt="'+s.n+'" src="'+PH[s.ph]+'">':'<div class="av" style="background:'+tint[i%tint.length]+'">'+ini+'</div>')+'<h3>'+s.n+'</h3><div class="role">'+s.r+'</div><p class="bio">'+s.b+'</p></button>';
+      return hd+'<button class="person" aria-expanded="false">'+(s.ph?'<img class="av" alt="'+s.n+'" src="'+PH[s.ph]+'">':'<div class="av" style="background:'+tint[i%tint.length]+'">'+ini+'</div>')+'<h3>'+s.n+'</h3><div class="role">'+s.r+'</div><p class="bio">'+s.b+'</p></button>';
     }).join('');
   }
   $('#stafflist').addEventListener('click',function(e){
@@ -330,7 +340,7 @@
   drawStaff();
 
   /* admissions form */
-  var SCHOOL_EMAIL='info@gssgonigora.edu.ng',SCHOOL_WA='2348031234567';
+  var SCHOOL_EMAIL='info@gssgonigora.edu.ng',SCHOOL_WA='2348031593815';
   var f=$('#form'),KEY='crestview-draft';
   try{var dr=JSON.parse(store(KEY)||'{}');Object.keys(dr).forEach(function(k){if(f.elements[k])f.elements[k].value=dr[k]})}catch(e){}
   f.addEventListener('input',function(){

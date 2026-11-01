@@ -1,5 +1,4 @@
-# Netlify settings for the GSS Gonin-Gora website.
-# Plain static site: no build step.
+# Netlify settings for the GSS Gonin-Gora website. Plain static site: no build step.
 [build]
   publish = "."
 
