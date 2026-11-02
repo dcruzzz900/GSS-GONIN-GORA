@@ -222,6 +222,7 @@ input,select,textarea{font:400 1rem var(--body);padding:.65em .8em;border-radius
 .staff{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:20px}
 .tier{grid-column:1/-1;margin:14px 0 0;font:700 .85rem var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-bottom:6px;border-bottom:1px solid var(--line)}
 .tier:first-child{margin-top:0}
+.filters[hidden]{display:none}
 .person{text-align:left;font:inherit;color:inherit;cursor:pointer;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px}
 .person img.av{width:72px;height:72px;object-fit:cover;display:block}
 .person .av{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:700 1.2rem var(--head);color:#16213a;margin-bottom:12px}

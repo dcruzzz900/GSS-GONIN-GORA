@@ -126,9 +126,10 @@
     {c:'Sports',t:'Inter-house sports',x:'Add a photo from sports day.',e:'🏃',img:''},
     {c:'Science labs',t:'Computer room',x:'Add a photo of the computer room.',e:'💻',img:''}
   ];
-  var GP={vp:'images/gallery-vice-principal-academics.jpg',sma:'images/gallery-senior-master-academics.jpg',dm:'images/gallery-discipline-master.jpg',hum:'images/gallery-head-of-humanities.jpg',st1:'images/gallery-stempreneurship-presentation.jpg',st2:'images/gallery-stempreneurship-first-position.jpg',mup:'images/gallery-mupsa-second-position.jpg',gco:'images/gallery-guidance-counsellor.jpg',cl3:'images/gallery-classroom-lesson.jpg',pr:'images/gallery-principal.jpg',sm:'images/gallery-senior-mistress-admin.jpg',hod:'images/gallery-head-of-sciences.jpg',wel:'images/gallery-welfare-officer.jpg',exam:'images/gallery-exams-officer.jpg'};
+  var GP={lang:'images/gallery-lang.jpg',ss3:'images/gallery-ss3.jpg',sci:'images/gallery-sci.jpg',vp:'images/gallery-vice-principal-academics.jpg',sma:'images/gallery-senior-master-academics.jpg',dm:'images/gallery-discipline-master.jpg',hum:'images/gallery-head-of-humanities.jpg',st1:'images/gallery-stempreneurship-presentation.jpg',st2:'images/gallery-stempreneurship-first-position.jpg',mup:'images/gallery-mupsa-second-position.jpg',gco:'images/gallery-guidance-counsellor.jpg',cl3:'images/gallery-classroom-lesson.jpg',pr:'images/gallery-principal.jpg',sm:'images/gallery-senior-mistress-admin.jpg',hod:'images/gallery-head-of-sciences.jpg',wel:'images/gallery-welfare-officer.jpg',exam:'images/gallery-exams-officer.jpg'};
   news[0].img=GP.st2;news[1].img=GP.mup;render();
   shots.unshift(
+    {c:'Events',t:'Science Day',x:'Students at Science Day.',e:'',img:GP.sci},
     {c:'Events',t:'STEMpreneurship, first position',x:'Our female students at the STEMpreneurship programme organised by Junior Achievement Nigeria (JAN). They emerged first.',e:'',img:GP.st2},
     {c:'Events',t:'STEMpreneurship presentation',x:'From the STEMpreneurship programme organised by Junior Achievement Nigeria (JAN).',e:'',img:GP.st1},
     {c:'Events',t:'MUPSA, second position',x:'Our female students at the Make The Most Under-Privileged Smile Again (MUPSA) programme. They emerged second.',e:'',img:GP.mup}
@@ -137,10 +138,12 @@
     {c:'Classrooms',t:'Classroom lesson',x:'A teacher taking a lesson in class.',e:'',img:GP.cl3},
     {c:'Staff',t:'Mrs Stella Dalun Kwasau',x:'Guidance and Counselling Officer.',e:'',img:GP.gco},
     {c:'Staff',t:'Mr Samson Mallam',x:'Head of Humanities.',e:'',img:GP.hum},
+    {c:'Staff',t:'Mrs Sweetie Martins',x:'Head of Languages.',e:'',img:GP.lang},
+    {c:'Staff',t:'Mrs Magdaline Osuetha',x:'Year group mistress, SS3.',e:'',img:GP.ss3},
     {c:'Staff',t:'Mr Yari Zachariah',x:'Vice Principal Academics.',e:'',img:GP.vp},
     {c:'Staff',t:'Mr Michael Tobias Dunka',x:'Senior Master (Academics).',e:'',img:GP.sma},
     {c:'Staff',t:'Mr James Augustine Enemona',x:'Discipline Master.',e:'',img:GP.dm},
-    {c:'Staff',t:'Mr Elias Mathias',x:'Principal.',e:'',img:GP.pr},
+    {c:'Staff',t:'Mr Elisha Mathias',x:'Principal.',e:'',img:GP.pr},
     {c:'Staff',t:'Mrs Magdaline Boniface',x:'Senior Mistress (Administration).',e:'',img:GP.sm},
     {c:'Staff',t:'Mrs Florence Christopher',x:'Head of Sciences.',e:'',img:GP.hod},
     {c:'Staff',t:'Mrs Patience John Emmanuel',x:'Welfare Officer.',e:'',img:GP.wel},
@@ -217,7 +220,7 @@
   var hsl=[
     {c:'pslide',k:'Welcome to',t:'Government Secondary School Gonin-Gora',p:'Providing quality education, building character and shaping a brighter future. Established in 2005.',b:'Learn More',h:'#about',bg:'background:var(--hero-a)',a:'<img class="hs-bg" alt="School building" style="object-position:50% 50%" src="'+SCHOOL_IMG+'">'},
     {c:'pslide',k:'Mission and vision',t:'Quality, affordable and inclusive education',p:'We develop responsible, confident and productive citizens, and aim to be a leading school known for academic excellence and moral values.',b:'Read more',h:'#about',bg:'background:linear-gradient(120deg,var(--hero-a),var(--hero-b))',a:'<img class="hs-bg" alt="" style="object-position:50% 30%" src="'+ASSEMBLY_IMG+'">'},
-    {c:'pslide',k:'Our principal',t:'Together we build a better tomorrow.',p:'Mr Elias Mathias, Principal',b:'Meet our staff',h:'#staff',bg:'background:linear-gradient(60deg,var(--hero-a),var(--hero-b))',a:'<img class="hs-bg" alt="Principal" src="'+PRINCIPAL_WIDE+'">'},
+    {c:'pslide',k:'Our principal',t:'Together we build a better tomorrow.',p:'Mr Elisha Mathias, Principal',b:'Meet our staff',h:'#staff',bg:'background:linear-gradient(60deg,var(--hero-a),var(--hero-b))',a:'<img class="hs-bg" alt="Principal" src="'+PRINCIPAL_WIDE+'">'},
     {c:'pslide',k:'Academic activities',t:'Science, Arts and Commercial pathways',p:'Students in SS1 to SS3 prepare for their examinations with dedicated teachers.',b:'See pathways',h:'#programs',bg:'background:linear-gradient(150deg,var(--hero-b),var(--hero-a))',a:'<img class="hs-bg" alt="" style="object-position:62% 50%" src="'+CLASS_IMG+'">'},
     {c:'pslide',k:'School facilities',t:'Laboratories, library and sports field',p:'A learning environment built to support every student.',b:'View gallery',h:'#gallery',bg:'background:linear-gradient(120deg,var(--hero-b),var(--hero-a))',a:'<img class="hs-bg" alt="" style="object-position:70% 50%" src="'+SPORT_IMG+'">'}
   ];
@@ -289,9 +292,9 @@
   });
 
   /* staff */
-  var PH={vp:'images/avatar-vice-principal-academics.jpg',sma:'images/avatar-senior-master-academics.jpg',dm:'images/avatar-discipline-master.jpg',pr:PRINCIPAL,hum:'images/avatar-head-of-humanities.jpg',gco:'images/avatar-guidance-counsellor.jpg',sm:'images/avatar-senior-mistress-admin.jpg',hod:'images/avatar-head-of-sciences.jpg',wel:'images/avatar-welfare-officer.jpg',exam:'images/avatar-exams-officer.jpg'};
+  var PH={lang:'images/avatar-lang.jpg',ss3:'images/avatar-ss3.jpg',vp:'images/avatar-vice-principal-academics.jpg',sma:'images/avatar-senior-master-academics.jpg',dm:'images/avatar-discipline-master.jpg',pr:PRINCIPAL,hum:'images/avatar-head-of-humanities.jpg',gco:'images/avatar-guidance-counsellor.jpg',sm:'images/avatar-senior-mistress-admin.jpg',hod:'images/avatar-head-of-sciences.jpg',wel:'images/avatar-welfare-officer.jpg',exam:'images/avatar-exams-officer.jpg'};
   var staff=[
-    {n:'Mr Elias Mathias',r:'Principal',d:'Leadership',b:'Head of the school. Add a short welcome message here.',ph:'pr'},
+    {n:'Mr Elisha Mathias',r:'Principal',d:'Leadership',b:'Head of the school. Add a short welcome message here.',ph:'pr'},
     {n:'Mr Yari Zachariah',r:'Vice Principal Academics',d:'Leadership',b:'Oversees teaching, the curriculum, examinations and academic standards. Add a short introduction here.',ph:'vp'},
     {n:'Vice Principal Administration',r:'Staff and school operations',d:'Leadership',b:'Add the name and a short introduction here.'},
     {n:'Mr Michael Tobias Dunka',r:'Senior Master (Academics)',d:'Leadership',b:'Add a short introduction here.',ph:'sma'},
@@ -302,13 +305,13 @@
     {n:'Games Master',r:'Sports and games',d:'Leadership',b:'Add the name and a short introduction here.'},
     {n:'SS1 Master',r:'Year group master, SS1',d:'Leadership',b:'Add the name and a short introduction here.'},
     {n:'SS2 Master',r:'Year group master, SS2',d:'Leadership',b:'Add the name and a short introduction here.'},
-    {n:'SS3 Master',r:'Year group master, SS3',d:'Leadership',b:'Add the name and a short introduction here.'},
-    {n:'Mrs Florence Christopher',r:'Head of Sciences',d:'Departments',b:'Head of the Sciences department. Add a short introduction here.',ph:'hod'},
-    {n:'Mr Samson Mallam',r:'Head of Humanities',d:'Departments',b:'Head of the Humanities department. Add a short introduction here.',ph:'hum'},
-    {n:'Mr Audu Joel',r:'Head of Vocational and Technology',d:'Departments',b:'Head of the Vocational and Technology department. Add a short introduction here.'},
-    {n:'Mrs Sweetie Martins',r:'Head of Languages',d:'Departments',b:'Head of the Languages department. Add a short introduction here.'},
-    {n:'Mrs Stella Dalun Kwasau',r:'Guidance and Counselling Officer',d:'Departments',b:'Looks after student welfare and counselling. Add a short introduction here.',ph:'gco'},
-    {n:'Mr Naallah Samuel Jock',r:'Exams Officer',d:'Departments',b:'Handles internal and external examinations. Add a short introduction here.',ph:'exam'}
+    {n:'Mrs Magdaline Osuetha',r:'Year group mistress, SS3',d:'Leadership',b:'Year group mistress for SS3. Add a short introduction here.',ph:'ss3'},
+    {n:'Mrs Florence Christopher',r:'Head of Sciences',d:'Leadership',b:'Head of the Sciences department. Add a short introduction here.',ph:'hod'},
+    {n:'Mr Samson Mallam',r:'Head of Humanities',d:'Leadership',b:'Head of the Humanities department. Add a short introduction here.',ph:'hum'},
+    {n:'Mr Audu Joel',r:'Head of Vocational and Technology',d:'Leadership',b:'Head of the Vocational and Technology department. Add a short introduction here.'},
+    {n:'Mrs Sweetie Martins',r:'Head of Languages',d:'Leadership',b:'Head of the Languages department. Add a short introduction here.',ph:'lang'},
+    {n:'Mrs Stella Dalun Kwasau',r:'Guidance and Counselling Officer',d:'Staff',b:'Looks after student welfare and counselling. Add a short introduction here.',ph:'gco'},
+    {n:'Mr Naallah Samuel Jock',r:'Exams Officer',d:'Staff',b:'Handles internal and external examinations. Add a short introduction here.',ph:'exam'}
   ];
   var depts=['All'].concat(staff.map(function(s){return s.d}).filter(function(c,i,a){return a.indexOf(c)===i}));
   var tint=['#f2c14e','#9ad5c4','#bfe8d6','#fde9a9'],sd='All',sf=$('#sfilters');
@@ -317,14 +320,15 @@
     b.onclick=function(){sd=c;sf.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===b)});drawStaff()};
     sf.appendChild(b);
   });
-  var TIERS={1:'Principal',2:'Vice Principals',3:'Senior staff and student affairs',4:'Year group masters',5:'Heads of department',6:'Officers'};
+  var TIERS={1:'Principal',2:'Vice Principals',3:'Senior Master and Senior Mistress',4:'Departments',5:'Student affairs',6:'Year group masters'};
   function tierOf(s){var k=s.n+' '+s.r;
     if(/Vice Principal/.test(k))return 2;
     if(/Principal/.test(k))return 1;
-    if(/Year group master/.test(k))return 4;
-    if(/Head of/.test(k))return 5;
-    if(/Exams Officer|Guidance and Counselling/.test(k))return 6;
-    return 3}
+    if(/Senior Master|Senior Mistress/.test(k))return 3;
+    if(/Year group (master|mistress)/.test(k))return 6;
+    if(/Head of|Exams Officer/.test(k))return 4;
+    
+    return 5}
   function drawStaff(){
     var pt=0;
     $('#stafflist').innerHTML=staff.filter(function(s){return sd==='All'||s.d===sd}).slice().sort(function(a,b){return tierOf(a)-tierOf(b)}).map(function(s,i){
