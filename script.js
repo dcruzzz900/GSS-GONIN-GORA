@@ -163,7 +163,7 @@
   });
   function drawGal(){
     gl=shots.filter(function(s){return gcur==='All'||s.c===gcur});
-    $('#gal').innerHTML=gl.map(function(s,i){var st=s.c==='Staff';return '<button class="shot" data-i="'+i+'"><div class="art" style="'+gbg(i)+'">'+gart(s)+(st?'<div class="ov"><b>'+s.t+'</b><span>'+s.x.replace(/\.$/,'')+'</span></div>':'')+'</div><div class="cap">'+(st?'<span>Staff</span>':'<b>'+s.t+'</b><span>'+s.c+'</span>')+'</div></button>'}).join('');
+    $('#gal').innerHTML=gl.map(function(s,i){var st=s.c==='Staff';return '<button class="shot" data-i="'+i+'"><div class="art" style="'+gbg(i)+'">'+gart(s)+(st?'<div class="ov"><span>'+s.x.replace(/\.$/,'')+'</span></div>':'')+'</div><div class="cap">'+'<b>'+s.t+'</b><span>'+s.c+'</span>'+'</div></button>'}).join('');
   }
   function lbShow(i){
     gi=(i+gl.length)%gl.length;var s=gl[gi];
