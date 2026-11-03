@@ -126,7 +126,7 @@
     {c:'Sports',t:'Inter-house sports',x:'Add a photo from sports day.',e:'🏃',img:''},
     {c:'Science labs',t:'Computer room',x:'Add a photo of the computer room.',e:'💻',img:''}
   ];
-  var GP={lang:'images/gallery-lang.jpg',ss3:'images/gallery-ss3.jpg',sci:'images/gallery-sci.jpg',vp:'images/gallery-vice-principal-academics.jpg',sma:'images/gallery-senior-master-academics.jpg',dm:'images/gallery-discipline-master.jpg',hum:'images/gallery-head-of-humanities.jpg',st1:'images/gallery-stempreneurship-presentation.jpg',st2:'images/gallery-stempreneurship-first-position.jpg',mup:'images/gallery-mupsa-second-position.jpg',gco:'images/gallery-guidance-counsellor.jpg',cl3:'images/gallery-classroom-lesson.jpg',pr:'images/gallery-principal.jpg',sm:'images/gallery-senior-mistress-admin.jpg',hod:'images/gallery-head-of-sciences.jpg',wel:'images/gallery-welfare-officer.jpg',exam:'images/gallery-exams-officer.jpg'};
+  var GP={kate:'images/gallery-year-group-mistress-ss1.jpg',bala:'images/gallery-year-group-master-ss3.jpg',lab:'images/gallery-labour-master.jpg',lang:'images/gallery-head-of-languages.jpg',ss3:'images/gallery-year-group-mistress-ss2.jpg',sci:'images/gallery-science-day.jpg',vp:'images/gallery-vice-principal-academics.jpg',sma:'images/gallery-senior-master-academics.jpg',dm:'images/gallery-discipline-master.jpg',hum:'images/gallery-head-of-humanities.jpg',st1:'images/gallery-stempreneurship-presentation.jpg',st2:'images/gallery-stempreneurship-first-position.jpg',mup:'images/gallery-mupsa-second-position.jpg',gco:'images/gallery-guidance-counsellor.jpg',cl3:'images/gallery-classroom-lesson.jpg',pr:'images/gallery-principal.jpg',sm:'images/gallery-senior-mistress-admin.jpg',hod:'images/gallery-head-of-sciences.jpg',wel:'images/gallery-welfare-officer.jpg',exam:'images/gallery-exams-officer.jpg'};
   news[0].img=GP.st2;news[1].img=GP.mup;render();
   shots.unshift(
     {c:'Events',t:'Science Day',x:'Students at Science Day.',e:'',img:GP.sci},
@@ -139,7 +139,10 @@
     {c:'Staff',t:'Mrs Stella Dalun Kwasau',x:'Guidance and Counselling Officer.',e:'',img:GP.gco},
     {c:'Staff',t:'Mr Samson Mallam',x:'Head of Humanities.',e:'',img:GP.hum},
     {c:'Staff',t:'Mrs Sweetie Martins',x:'Head of Languages.',e:'',img:GP.lang},
-    {c:'Staff',t:'Mrs Magdaline Osuetha',x:'Year group mistress, SS3.',e:'',img:GP.ss3},
+    {c:'Staff',t:'Miss Kate Victor',x:'Year group mistress, SS1.',e:'',img:GP.kate},
+    {c:'Staff',t:'Mrs Magdaline Osuetha',x:'Year group mistress, SS2.',e:'',img:GP.ss3},
+    {c:'Staff',t:'Mr Fadason Taknumwa Bala',x:'Year group master, SS3.',e:'',img:GP.bala},
+    {c:'Staff',t:'Mr Aaron Monday Dachet',x:'Labour Master.',e:'',img:GP.lab},
     {c:'Staff',t:'Mr Yari Zachariah',x:'Vice Principal Academics.',e:'',img:GP.vp},
     {c:'Staff',t:'Mr Michael Tobias Dunka',x:'Senior Master (Academics).',e:'',img:GP.sma},
     {c:'Staff',t:'Mr James Augustine Enemona',x:'Discipline Master.',e:'',img:GP.dm},
@@ -292,7 +295,7 @@
   });
 
   /* staff */
-  var PH={lang:'images/avatar-lang.jpg',ss3:'images/avatar-ss3.jpg',vp:'images/avatar-vice-principal-academics.jpg',sma:'images/avatar-senior-master-academics.jpg',dm:'images/avatar-discipline-master.jpg',pr:PRINCIPAL,hum:'images/avatar-head-of-humanities.jpg',gco:'images/avatar-guidance-counsellor.jpg',sm:'images/avatar-senior-mistress-admin.jpg',hod:'images/avatar-head-of-sciences.jpg',wel:'images/avatar-welfare-officer.jpg',exam:'images/avatar-exams-officer.jpg'};
+  var PH={kate:'images/avatar-year-group-mistress-ss1.jpg',bala:'images/avatar-year-group-master-ss3.jpg',lab:'images/avatar-labour-master.jpg',lang:'images/avatar-head-of-languages.jpg',ss3:'images/avatar-year-group-mistress-ss2.jpg',vp:'images/avatar-vice-principal-academics.jpg',sma:'images/avatar-senior-master-academics.jpg',dm:'images/avatar-discipline-master.jpg',pr:PRINCIPAL,hum:'images/avatar-head-of-humanities.jpg',gco:'images/avatar-guidance-counsellor.jpg',sm:'images/avatar-senior-mistress-admin.jpg',hod:'images/avatar-head-of-sciences.jpg',wel:'images/avatar-welfare-officer.jpg',exam:'images/avatar-exams-officer.jpg'};
   var staff=[
     {n:'Mr Elisha Mathias',r:'Principal',d:'Leadership',b:'Head of the school. Add a short welcome message here.',ph:'pr'},
     {n:'Mr Yari Zachariah',r:'Vice Principal Academics',d:'Leadership',b:'Oversees teaching, the curriculum, examinations and academic standards. Add a short introduction here.',ph:'vp'},
@@ -301,11 +304,11 @@
     {n:'Mrs Magdaline Boniface',r:'Senior Mistress (Administration)',d:'Leadership',b:'Add a short introduction here.',ph:'sm'},
     {n:'Mr James Augustine Enemona',r:'Discipline Master',d:'Leadership',b:'Handles student conduct and discipline. Add a short introduction here.',ph:'dm'},
     {n:'Mrs Patience John Emmanuel',r:'Welfare Officer',d:'Leadership',b:'Looks after student welfare. Add a short introduction here.',ph:'wel'},
-    {n:'Mr Aaron Monday Dachet',r:'Labour Master',d:'Leadership',b:'Looks after the school environment and student labour. Add a short introduction here.'},
+    {n:'Mr Aaron Monday Dachet',r:'Labour Master',d:'Leadership',b:'Looks after the school environment and student labour. Add a short introduction here.',ph:'lab'},
     {n:'Games Master',r:'Sports and games',d:'Leadership',b:'Add the name and a short introduction here.'},
-    {n:'SS1 Master',r:'Year group master, SS1',d:'Leadership',b:'Add the name and a short introduction here.'},
-    {n:'SS2 Master',r:'Year group master, SS2',d:'Leadership',b:'Add the name and a short introduction here.'},
-    {n:'Mrs Magdaline Osuetha',r:'Year group mistress, SS3',d:'Leadership',b:'Year group mistress for SS3. Add a short introduction here.',ph:'ss3'},
+    {n:'Miss Kate Victor',r:'Year group mistress, SS1',d:'Leadership',b:'Year group mistress for SS1. Add a short introduction here.',ph:'kate'},
+    {n:'Mrs Magdaline Osuetha',r:'Year group mistress, SS2',d:'Leadership',b:'Year group mistress for SS2. Add a short introduction here.',ph:'ss3'},
+    {n:'Mr Fadason Taknumwa Bala',r:'Year group master, SS3',d:'Leadership',b:'Year group master for SS3. Add a short introduction here.',ph:'bala'},
     {n:'Mrs Florence Christopher',r:'Head of Sciences',d:'Leadership',b:'Head of the Sciences department. Add a short introduction here.',ph:'hod'},
     {n:'Mr Samson Mallam',r:'Head of Humanities',d:'Leadership',b:'Head of the Humanities department. Add a short introduction here.',ph:'hum'},
     {n:'Mr Audu Joel',r:'Head of Vocational and Technology',d:'Leadership',b:'Head of the Vocational and Technology department. Add a short introduction here.'},
