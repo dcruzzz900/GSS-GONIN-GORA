@@ -284,6 +284,46 @@
     render();document.getElementById('news').scrollIntoView({behavior:'smooth'});
   });
 
+  /* past principals: add one line per principal (n = name, y = years, note = short text, img = photo path such as 'images/principal-name.jpg') */
+  var PAST=[
+    {n:'Mr Ayuba Markus',y:'February 2006 to January 2018',note:'The first principal of the school.',img:'images/past-principal-mr-ayuba-markus.jpg'},
+    {n:'Mrs Josephine Peter Audi',y:'February 2018 to December 2020',note:'',img:'images/past-principal-mrs-josephine-peter-audi.jpg'},
+    {n:'Mr Samuel Audi Ladan',y:'January 2021 to October 2021',note:'',img:'images/past-principal-mr-samuel-audi-ladan.jpg'},
+    {n:'Mr Sunday Yakubu',y:'October 2021 to June 2023',note:'',img:'images/past-principal-mr-sunday-yakubu.jpg'},
+    {n:'Mrs Laraba T. Yero',y:'June 2023 to February 2024',note:'',img:'images/past-principal-mrs-laraba-t-yero.jpg'},
+    {n:'Mrs Bilhatu Cecilia Nuhu Arams',y:'May 2024 to May 2025',note:'',img:'images/past-principal-mrs-bilhatu-cecilia-nuhu-arams.jpg'}
+  ];
+  var ppi=0,pph=false,ppn=PAST.length,ppt=$('#pptrack'),ppd=$('#ppdots'),ppinfo=$('#ppinfo'),ppbg=['#f2c14e','#9ad5c4','#d7f0e4'];
+  ppt.innerHTML=PAST.map(function(p,i){
+    var ph=p.img?'<img src="'+p.img+'" alt="'+p.n+'" loading="lazy">':'<div class="ph" style="background:'+ppbg[i%3]+'" aria-hidden="true">👤</div>';
+    return '<div class="pp-card" data-i="'+i+'">'+ph+'<div class="lbl"><b>'+p.n+'</b><span>'+p.y+'</span></div></div>';
+  }).join('');
+  PAST.forEach(function(_,i){var b=document.createElement('button');b.setAttribute('aria-label','Show principal '+(i+1));b.onclick=function(){ppgo(i)};ppd.appendChild(b)});
+  function ppgo(i){
+    ppi=((i%ppn)+ppn)%ppn;var h=Math.floor(ppn/2);
+    [].forEach.call(ppt.children,function(el,j){
+      var d=((j-ppi+ppn+h)%ppn)-h,a=Math.abs(d);
+      el.style.transform='translateX('+(d*58)+'%) translateZ('+(-a*140)+'px) rotateY('+(-d*28)+'deg)';
+      el.style.opacity=a>2?0:1-a*.25;el.style.zIndex=10-a;el.style.filter=a?'brightness(.78)':'none';
+      el.style.pointerEvents=a>2?'none':'auto';el.setAttribute('aria-hidden',a!==0);
+    });
+    var p=PAST[ppi];
+    ppinfo.classList.remove('fade');void ppinfo.offsetWidth;ppinfo.classList.add('fade');
+    ppinfo.innerHTML='<h3></h3><p class="y"></p><p class="note"></p>';
+    ppinfo.children[0].textContent=p.n;ppinfo.children[1].textContent=p.y;ppinfo.children[2].textContent=p.note||'';
+    [].forEach.call(ppd.children,function(b,j){b.setAttribute('aria-current',j===ppi)});
+  }
+  $('#ppprev').onclick=function(){ppgo(ppi-1)};$('#ppnext').onclick=function(){ppgo(ppi+1)};
+  ppt.addEventListener('click',function(e){var c=e.target.closest('.pp-card');if(c)ppgo(+c.dataset.i)});
+  var ppst=$('#ppstage'),ppx=null;
+  ['mouseenter','focusin'].forEach(function(ev){ppst.addEventListener(ev,function(){pph=true})});
+  ['mouseleave','focusout'].forEach(function(ev){ppst.addEventListener(ev,function(){pph=false})});
+  ppst.addEventListener('touchstart',function(e){ppx=e.touches[0].clientX;pph=true},{passive:true});
+  ppst.addEventListener('touchend',function(e){if(ppx!==null){var dx=e.changedTouches[0].clientX-ppx;if(Math.abs(dx)>40)ppgo(ppi+(dx<0?1:-1))}ppx=null;pph=false});
+  ppst.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')ppgo(ppi-1);if(e.key==='ArrowRight')ppgo(ppi+1)});
+  ppgo(0);
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&ppn>1)setInterval(function(){if(!pph&&!document.hidden)ppgo(ppi+1)},4500);
+
   /* organogram */
   var odesc=$('#odesc'),onodes=document.querySelectorAll('.node');
   onodes.forEach(function(n){

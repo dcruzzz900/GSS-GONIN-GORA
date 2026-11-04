@@ -202,6 +202,22 @@ input,select,textarea{font:400 1rem var(--body);padding:.65em .8em;border-radius
 .arm{padding:.4em .9em;border-radius:99px;border:1px solid var(--brand);font-size:.92rem;background:var(--bg);transition:opacity .2s}
 .arm.dim{opacity:.25}
 @media (max-width:860px){.yrs{grid-template-columns:1fr}}
+.pp-stage{position:relative;height:340px;perspective:1100px;margin-top:28px;outline-offset:6px}
+.pp-track{position:relative;height:100%;transform-style:preserve-3d}
+.pp-card{position:absolute;left:50%;top:0;width:230px;height:310px;margin-left:-115px;border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--line);box-shadow:0 14px 34px rgba(0,0,0,.2);transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .8s,filter .8s;cursor:pointer}
+.pp-card img,.pp-card .ph{width:100%;height:100%;object-fit:cover;display:grid;place-items:center;font-size:4rem}
+.pp-card .lbl{position:absolute;left:0;right:0;bottom:0;padding:36px 12px 12px;color:#fff;text-align:center;background:linear-gradient(0deg,rgba(7,18,38,.9),rgba(7,18,38,0))}
+.pp-card .lbl b{display:block;font:700 1rem var(--head);line-height:1.2}
+.pp-card .lbl span{font-size:.82rem;opacity:.92}
+.pp-info{text-align:center;margin:18px auto 0;max-width:620px;min-height:120px}
+.pp-info h3{margin:0 0 .2em;font-size:1.4rem}
+.pp-info .y{color:var(--brand);font-weight:700;margin:0 auto .4em}
+.pp-info .note{color:var(--muted);margin:0 auto}
+.pp-info.fade{animation:ppfade .6s ease}
+@keyframes ppfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+#ppdots{justify-content:center;margin-top:14px}
+@media (min-width:900px){.pp-stage{height:570px;perspective:1500px}.pp-card{width:360px;height:486px;margin-left:-180px}.pp-card .lbl{padding:48px 16px 16px}.pp-card .lbl b{font-size:1.2rem}.pp-card .lbl span{font-size:.95rem}.pp-info{margin-top:26px}.pp-info h3{font-size:1.8rem}.pp-info .y{font-size:1.1rem}}
+@media (max-width:560px){.pp-stage{height:310px}.pp-card{width:190px;height:280px;margin-left:-95px}.pp-stage .arr.prev{left:2px}.pp-stage .arr.next{right:2px}}
 .houses{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:20px}
 .house{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:center;transition:transform .2s}
 .house:hover{transform:translateY(-4px)}

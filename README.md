@@ -30,6 +30,7 @@ For an email on each submission: **Forms, Form notifications, Add notification, 
 
 ## Where to edit things
 - Staff, gallery photos, news, events, term dates, houses: `script.js`.
+- Past principals: edit the `PAST` list in `script.js`. Add one line per principal with `n` (name), `y` (years served, for example `2005 to 2010`), `note` (a short text) and `img` (photo path). Put the photo in the `images/` folder, for example `img:'images/principal-name.jpg'`. Delete the three placeholder lines when you add real ones.
 - Replace a photo: put a new file in `images/` with the same name.
 - Term dates: `TERMS` in `script.js` (use `YYYY-MM-DD`). Current term: `CUR`.
 - School email and phone: `index.html` (top bar and footer) and `SCHOOL_EMAIL` / `SCHOOL_WA` in `script.js`.
